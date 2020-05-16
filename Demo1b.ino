@@ -46,45 +46,42 @@ int main()
    //sensor[8] = var[] //sensor 4
 
 
-   // Going Straight
-     if (sensor[4]>THRESHOLD && sensor[5]>THRESHOLD && sensor[3]<THRESHOLD && sensor[6]<THRESHOLD ) {
+     // go straight
+     if (sensor[4]>THRESHOLD && sensor[5]>THRESHOLD && sensor[3]<THRESHOLD && sensor[6]<THRESHOLD ) 
+     {
       motorSpeeds[0] = 120; // 50
       motorSpeeds[1] = 120; // 50
      }
-     
-     //Turn Right
+     // turn right
      else if (sensor[4]<THRESHOLD&&sensor[5]>THRESHOLD||sensor[6]>THRESHOLD)  {
          
             motorSpeeds[0] = 120; // 40
             motorSpeeds[1] = 40; // 25
      }
-     else if (sensor[4]<THRESHOLD && sensor[5]<THRESHOLD && sensor[7]>THRESHOLD||sensor[6]>THRESHOLD)  {
-       
+     else if (sensor[4]<THRESHOLD && sensor[5]<THRESHOLD && sensor[7]>THRESHOLD||sensor[6]>THRESHOLD)  
+     {
           motorSpeeds[0] = 120; //50
           motorSpeeds[1] = 0; // 20
      }
-
-     //turn left
-     else if(sensor[5]<THRESHOLD&&sensor[4]>THRESHOLD||sensor[3]>THRESHOLD){
-       
+     // turn left
+     else if(sensor[5]<THRESHOLD&&sensor[4]>THRESHOLD||sensor[3]>THRESHOLD)
+     {
           motorSpeeds[0] = 40;
           motorSpeeds[1] = 120;
      }
-     else if (sensor[5]<THRESHOLD && sensor[4]<THRESHOLD && sensor[2]>THRESHOLD||sensor[3]>THRESHOLD)  {
-        
+     else if (sensor[5]<THRESHOLD && sensor[4]<THRESHOLD && sensor[2]>THRESHOLD||sensor[3]>THRESHOLD)  
+     {
           motorSpeeds[0] = 0;
           motorSpeeds[1] = 120;
-      }
-
-      else if (sensor[3]<THRESHOLD && sensor[4]<THRESHOLD && sensor[5]<THRESHOLD && sensor[6]<THRESHOLD && sensor[7]<THRESHOLD && sensor[2]<THRESHOLD) {
-      
-      motorSpeeds[0] = STOP;
-      motorSpeeds[1] = STOP;
-      }
-      setMotorSpeeds(motorSpeeds);
-      
-    
-  }return 0;
+     }
+     else if (sensor[3]<THRESHOLD && sensor[4]<THRESHOLD && sensor[5]<THRESHOLD && sensor[6]<THRESHOLD && sensor[7]<THRESHOLD && sensor[2]<THRESHOLD) 
+     {
+     motorSpeeds[0] = STOP;
+     motorSpeeds[1] = STOP;
+     }
+     setMotorSpeeds(motorSpeeds);  
+  }
+  return 0;
 }
 
 
@@ -130,6 +127,29 @@ ISR(ADC_vect)
   } 
 
 
-
-
- 
+// SLOW-ZONE CODE
+//
+//<summary>
+//
+// Find the value readings of the coloured side markers and set as thresholds.
+// If side marker (sensor[1]) detects the green threshold slow motors.
+// If the side marker detects the red threshold resume to normal speed.
+// '...' to be filled in.
+//
+//<summary>
+//
+// #define GREEN_THRESHOLD ...
+// #define RED_THRESHOLD ...
+//
+// sensor[1] = var[...];
+//
+// if (sensor[1] == GREEN_THRESHOLD)
+// {
+//    motorSpeeds[0] = ...(100mm/s);
+//    motorSpeeds[1] = ...(100mm/s);
+// }
+// else if (sensor[1] == RED_THRESHOLD)
+// {
+//    motorSpeeds[0] = 120; // 50
+//    motorSpeeds[1] = 120; // 50
+// }
